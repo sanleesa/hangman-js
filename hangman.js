@@ -1,108 +1,111 @@
 /**
-* Hangman Javascript class
-* Author: @jelofsson
-* Author: @JadeMaverc
-**/
+ * Hangman Javascript class
+ * Author: @jelofsson
+ * Author: @JadeMaverc
+ **/
 
-var wordlist = [
-    {
-        "word": "SPHIX MACAW",
-        "hint": "Also know as the little blue macaw and went extinct due to habit extinction"
+var wordlist = [{
+        "word": "ELEPHANTS",
+        "hint": "Only animals that can't jump"
     },
     {
-        "word": "HIBISCUS",
-        "hint": "A flower whose most common feature is an epicalyx and the stamens are typically fused into tube"
+        "word": "TONGUE",
+        "hint": "Like fingerprints, everyone's what print is different"
     },
     {
-        "word": "MINT",
-        "hint": "Manufacturers of toothpaste, gum, candy, and beauty products often use this plant's oil"
+        "word": "HONEY",
+        "hint": "The only food that doesn't spoil is"
     },
     {
-        "word": "DOG",
-        "hint": "Man's best friend"
+        "word": "BREATH",
+        "hint": "You can't kill yourself by holdingy your"
     },
     {
-        "word": "OSTRICH",
-        "hint": "a flightless bird with the largest eggs"
+        "word": "TYPEWRITER",
+        "hint": "The longest word that can be made using the letters only on one row on the keyboard"
     },
     {
-        "word": "FLAMINGO",
-        "hint": "a tall pink wading bird with a thick downturned bill"
+        "word": "TONGUE",
+        "hint": "It's the longest muscle in our body"
     },
     {
-        "word": "ETYMOLOGY",
-        "hint": "the study of the origin of words and the way in which their meanings have changed throughout history."
+        "word": "CARBON MONOXIDE",
+        "hint": "What can kill a person in less than 15 minutes"
     },
     {
-        "word": "KIWI",
-        "hint": "A flightless bird native to New zealand and is also the name of a fruit"
-    },
-    {
-        "word": "BLUE WHALE",
-        "hint": "Largest mammal on earth"
-    },
-    {
-        "word": "BUMBLEBEE BAT",
-        "hint": "Smallest mammal on earth"
-    },
-    {
-        "word": "MANGO",
-        "hint": "National fruit of India, Haiti, and the Philippines, belonging to the cashew family"
-    },
-    {
-        "word": "ENVIRONMENT",
-        "hint": "Habitat or natural surroundings"
-    },
-    {
-        "word": "TIGER",
-        "hint": "Large striped animal of the cat family"
-    },
-    {
-        "word": "GRETA THUNBERG",
-        "hint": "Swedish environmental activist"
+        "word": "DRAGONFLIES",
+        "hint": "The fastest insects, flying 50 to 60 mph"
     },
     {
         "word": "ANTARCTICA",
-        "hint": "the southernmost continent and site of the South Pole"
+        "hint": "Corn is grown on every continent except"
     },
     {
-        "word": "PANGOLIN",
-        "hint": "Scaly aardvark"
+        "word": "HEARING",
+        "hint": "Which  is the fastest human sense"
     },
     {
-        "word": "MANGA",
-        "hint": "Japanese Comic books"
+        "word": "RHYTHM",
+        "hint": "The longest English word without a vowel"
     },
     {
-        "word": "COYOTE",
-        "hint": "Trickster who want to catch the Roadrunner"
+        "word": "THIGH BONES",
+        "hint": "One part of human body is stronger than concrete"
     },
     {
-        "word": "MAUNA KEA",
-        "hint": "tallest mountain on Earth"
+        "word": "EARTH",
+        "hint": "The only planet not named after a God"
     },
     {
-        "word": "AMAZON",
-        "hint": "Largest tropical forest in the world"
+        "word": "PEDESTRAIN",
+        "hint": "One who goes on foot"
+    },
+    {
+        "word": "BILINGUAL",
+        "hint": "One who speaks two languages"
+    },
+    {
+        "word": "RETICENT",
+        "hint": "One who speaks less"
+    },
+    {
+        "word": "BLOBFISH",
+        "hint": "What is the ugliest animal in the world"
+    },
+    {
+        "word": "DENTISTRY",
+        "hint": "Name the oldest profession in the world"
+    },
+    {
+        "word": "SOUTH KOREA",
+        "hint": "Only places you cant buy coca cola"
+    },
+    {
+        "word": "FRANCE",
+        "hint": "A country which is visited by most of the people around the world"
+    },
+    {
+        "word": "JAPAN",
+        "hint": "World most prone to  earthquake country "
     }
 ];
 
-var Hangman = (function () {
+var Hangman = (function() {
 
     'use strict';
 
     function Hangman(elId) {
 
         // Dom is ready
-        this.elId       = elId;
-        this.words      = [];
-        this.hints      = [];
+        this.elId = elId;
+        this.words = [];
+        this.hints = [];
 
-        wordlist.forEach( entry => {
+        wordlist.forEach(entry => {
             this.words.push(entry.word);
             this.hints.push(entry.hint);
         })
-        
+
         // Hide the flower
         this.hideElementById(this.elId + "_1", null)
         this.hideElementById(this.elId + "_2", null)
@@ -112,15 +115,15 @@ var Hangman = (function () {
         this.hideElementById(this.elId + "_6", null)
     }
 
-    Hangman.prototype.reset = function () {
+    Hangman.prototype.reset = function() {
 
         // Reset variables
-        this.STOPPED        = false;
-        this.MISTAKES       = 0;
-        this.GUESSES        = [];
-        this.INDEX          = Math.floor(Math.random() * this.words.length);
-        this.WORD           = this.words[this.INDEX];
-        this.HINT           = this.hints[this.INDEX];
+        this.STOPPED = false;
+        this.MISTAKES = 0;
+        this.GUESSES = [];
+        this.INDEX = Math.floor(Math.random() * this.words.length);
+        this.WORD = this.words[this.INDEX];
+        this.HINT = this.hints[this.INDEX];
 
         // Reset Elements
         this.hideElementByClass('h');
@@ -140,13 +143,13 @@ var Hangman = (function () {
         this.guess(' ');
     };
 
-    Hangman.prototype.showHint = function () {
+    Hangman.prototype.showHint = function() {
 
         // Replace button with hint text
         this.showElementByIdWithContent(this.elId + "_hintbox", this.HINT);
     }
 
-    Hangman.prototype.guess = function (guess) {
+    Hangman.prototype.guess = function(guess) {
 
         // Uppercase the guessed letter
         guess = guess.charAt(0).toUpperCase();
@@ -187,26 +190,28 @@ var Hangman = (function () {
 
     };
 
-    Hangman.prototype.showElementByIdWithContent = function (elId, content) {
+    Hangman.prototype.showElementByIdWithContent = function(elId, content) {
         if (content !== null) {
             document.getElementById(elId).innerHTML = content;
         }
         document.getElementById(elId).style.opacity = 1;
     };
 
-    Hangman.prototype.hideElementById = function (elId) {
+    Hangman.prototype.hideElementById = function(elId) {
         document.getElementById(elId).style.opacity = 0;
     }
 
-    Hangman.prototype.hideElementByClass = function (elClass) {
-        var elements = document.getElementsByClassName(elClass), i;
+    Hangman.prototype.hideElementByClass = function(elClass) {
+        var elements = document.getElementsByClassName(elClass),
+            i;
         for (i = 0; i < elements.length; i++) {
             elements[i].style.opacity = 0;
         }
     };
 
-    Hangman.prototype.getGuessedfWord = function () {
-        var result = "", i;
+    Hangman.prototype.getGuessedfWord = function() {
+        var result = "",
+            i;
         for (i = 0; i < this.WORD.length; i++) {
             // Word characters
             result += (this.GUESSES.indexOf(this.WORD[i]) > -1) ?
