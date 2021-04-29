@@ -1,10 +1,11 @@
 # Hangman-js
 
-A hangman game written in vanilla Javascript. This was built for use in an online competition I'm hosting
+A hangman game written in vanilla Javascript. This was built for use in an online competition
+The game has words that are realted to general knowledge
 
 ## Demo
 
-Try out demo [here](https://jademaveric.github.io/hangman-js/)
+Try out demo [here](https://sanleesa.github.io/hangman-js/)
 
 ## Usage
 
